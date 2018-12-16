@@ -1,9 +1,3 @@
-// Back button:
-document.getElementsByClassName("back")[0]
-  .addEventListener("click", function (evet) {
-    window.location = "../index.html";
-  });
-
 // Script:
 // Set top element indexes - only display
 var index = 0;
@@ -28,9 +22,11 @@ rates = document.getElementsByClassName("rate");
  */
 function Rate(param) {
   var _event, element, id;
+
+  // To set rating from JS
   if (Number.isInteger(param)) {
     element = document.getElementById("" + param);
-  } else {
+  } else { // otherwise
     element = param.currentTarget;
   }
 
@@ -39,32 +35,44 @@ function Rate(param) {
   document.querySelector(".top" + id).classList.add("active");
   document.querySelector(".bottom" + id).classList.add("active");
 
-  // before them are all active too
-  if (id > 1) {
-    [...rates].filter(function (item) {
-        return item.id < id
-      })
-      .forEach(function (item) {
-        document.querySelector(".top" + item.id).classList.add("active");
-        document.querySelector(".bottom" + item.id).classList.add("active");
-      });
+  // another click on the same rate-step returns to rate 0
+  if (id == ratinInput.innerHTML) {
+
+    Array.from(document.getElementsByClassName("circle")).forEach(function (circle) {
+      circle.classList.remove("active");
+    });
+    ratinInput.innerHTML = 0;
+
+  } else {
+
+    // before them are all active too
+    if (id > 1) {
+      [...rates].filter(function (item) {
+          return item.id < id
+        })
+        .forEach(function (item) {
+          document.querySelector(".top" + item.id).classList.add("active");
+          document.querySelector(".bottom" + item.id).classList.add("active");
+        });
+    }
+    // after them are always inactive
+    if (id < 4) {
+      [...rates].filter(function (item) {
+          return item.id > id
+        })
+        .forEach(function (item) {
+          document.querySelector(".top" + item.id).classList.remove("active");
+          document.querySelector(".bottom" + item.id).classList.remove("active");
+        });
+    }
+    // rating block gives the value to input on top
+    ratinInput.innerHTML = id;
+
   }
-  // after them are always inactive
-  if (id < 4) {
-    [...rates].filter(function (item) {
-        return item.id > id
-      })
-      .forEach(function (item) {
-        document.querySelector(".top" + item.id).classList.remove("active");
-        document.querySelector(".bottom" + item.id).classList.remove("active");
-      });
-  }
-  // rating block gives the value to input on top
-  ratinInput.value = id;
 }
-// Save rating value to:
+// "Save" rating value to:
 var ratinInput = document.getElementById("ratingValue");
 
 // to display on load:
-ratinInput.value = 2;
+ratinInput.innerHTML = 2;
 Rate(2);

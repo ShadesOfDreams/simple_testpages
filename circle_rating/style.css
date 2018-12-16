@@ -1,13 +1,16 @@
-.back{
-    background-color: lightblue;
-    display: inline-block;
-    padding: 1em;
-    border-radius: 1em;
-    cursor: pointer;
+.row{
+display: block;
+width: 100%;
 }
 
-.ratingContainer{
-    margin: 100px;
+.column{
+    float: left;
+    width: 50%;
+}
+
+.ratingContainer,
+input{
+    margin: 25px 100px;
 }
 .circles{
     position: relative;
@@ -25,14 +28,14 @@
     overflow: hidden;
     float: left;
     position: relative;
-    margin-left: -35px
+    margin-left: -36px
 }
 .circles .circle div{
     position: relative;
     height: 100px;
     width: 100px;
     box-sizing: border-box;
-    border: 10px solid black;
+    border: 18px solid black;
     border-radius: 100%;
 }
 .bottom .circle div{
@@ -49,6 +52,7 @@
     left: 0;
     top: 0;
     margin-left: -35px;
+    display: block;
 }
 .rate{
     position: relative;
@@ -56,4 +60,9 @@
     height: 100px;
     float: left;
     z-index: 500;
+}
+
+.output{
+    display: block;
+    margin-left: 70px;
 }

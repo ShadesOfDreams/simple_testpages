@@ -1,0 +1,13 @@
+
+label{
+    display: block;
+}
+
+.custom-1,
+.custom-2{
+    background-color: lightblue;
+}
+
+.custom-2{
+    display: block;
+}

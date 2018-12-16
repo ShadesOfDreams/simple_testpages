@@ -24,8 +24,23 @@
 		<div class="page" url="./custom_dom/index.html">
 			<span>Custom DOMs</span>
 		</div>
-		<div class="page" url="./">
+		<div class="page disabled" url="./">
 			<span>JS reminders</span>
+		</div>
+		<div class="page disabled" url="./">
+			<span>Coming soon...</span>
+		</div>
+		<div class="page disabled" url="./">
+			<span>Coming soon...</span>
+		</div>
+		<div class="page disabled" url="./">
+			<span>Coming soon...</span>
+		</div>
+		<div class="page disabled" url="./">
+			<span>Coming soon...</span>
+		</div>
+		<div class="page disabled" url="./">
+			<span>Coming soon...</span>
 		</div>
 	</div>
 
@@ -46,9 +61,12 @@
 				ChangeColor();
 			}
 			page.style.backgroundColor = "hsl(" + hue + ", 60%, 80%)";
-			page.addEventListener("click", function (event) {
-				window.location = event.currentTarget.getAttribute("url");
-			});
+			page.style.borderColor = "hsl(" + hue + ", 20%, 60%)"
+			if(!page.classList.contains("disabled")){
+				page.addEventListener("click", function (event) {
+					window.location = event.currentTarget.getAttribute("url");
+				});
+			}
 		})
 	</script>
 </body>

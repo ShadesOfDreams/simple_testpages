@@ -1,1 +1,6 @@
-# simple_testpages
+# Simple testpages, in case I forget something...
+## Contains:
+* Offline webpage solution (works from server)
+* Dropped rating solution with interlaced circles
+* CSS reminders...
+* Good to know in case of custom DOM elements

@@ -1,7 +1,16 @@
 body {
-    padding: 0;
-    margin: 0;
+    font-family: sans-serif;
 }
+
+.back{
+    background-color: lightblue;
+    display: inline-block;
+    padding: 1em;
+    border-radius: 1em;
+    cursor: pointer;
+    margin: 1em;
+}
+
 
 .page-container {
     margin: auto;
@@ -11,23 +20,38 @@ body {
     display: inline-block;
     position: relative;
     margin: 2em;
-    padding: 0 1em;
-    border-radius: 2em;
-    width: 10rem;
+    padding: auto;
+    border-radius: 1em;
+    width: 12rem;
     height: 5em;
-    
+    cursor: pointer;
+    border-width: 2px;
+    border-style: solid;
 }
+
+.page.disabled{
+    opacity: 0.5;
+}
+
 .page span{
-    display: inline-block;
+    display: block;
+    width: 100%;
     position: absolute;
     top: 50%;
     transform: translate(-0%, -50%);
-    cursor: pointer;
     color: black;
     text-decoration: none;
     font-family: sans-serif;
     font-size: 1.5rem;
     font-weight: 500;
     text-align: center;
-    vertical-align: middle;
+}
+
+.page:not(.disabled):hover,
+.back:hover{
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+}
+
+.inline{
+    display: inline-block;
 }
