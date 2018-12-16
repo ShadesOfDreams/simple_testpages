@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./src/js/offline.min.js"></script>
+    <title>Main</title>
+    <style>
+        .page-container {
+            margin: auto;
+        }
+
+        .page {
+            margin: 5em;
+            padding: 5em;
+            border-radius: 2em;
+            min-width: 5em;
+            min-height: 5em;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- PAGE LINKS -->
+    <div class="page-container">
+        <div class="page">
+            <a href="./offline_online/">Offline-online page</a>
+        </div>
+        <div class="page">
+            <a href="./circle_rating/">Cricle rating solution</a>
+        </div>
+        <div class="page">
+            <a href="./css_reminder/">CSS reminders</a>
+        </div>
+        <div class="page">
+            <a href="./custom_dom/">Custom DOMs</a>
+        </div>
+        <div class="page">
+            <a href="./">JS reminders</a>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        var pages = document.getElementsByClassName("page");
+        var red = 0;
+        var green = 0;
+        var blue = 0;
+
+        function ChangeColor() {
+
+        }
+
+        Array.from(pages).forEach(function (page) {
+
+            page.style.backgroundColor = "";
+        })
+    </script>
+</body>
+
+</html>
