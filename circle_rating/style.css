@@ -1,0 +1,59 @@
+.back{
+    background-color: lightblue;
+    display: inline-block;
+    padding: 1em;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.ratingContainer{
+    margin: 100px;
+}
+.circles{
+    position: relative;
+    height: 50px;
+}
+.circles .top,
+.circles .bottom{
+    position: relative;
+    display: block;
+    height: 100%;
+}
+.circles .circle{
+    width: 100px;
+    height: 50px;
+    overflow: hidden;
+    float: left;
+    position: relative;
+    margin-left: -35px
+}
+.circles .circle div{
+    position: relative;
+    height: 100px;
+    width: 100px;
+    box-sizing: border-box;
+    border: 10px solid black;
+    border-radius: 100%;
+}
+.bottom .circle div{
+    margin-top: -50%;
+}
+.circle.active div{
+    border-color: red;
+}
+.ratingContainer{
+    position: relative;
+}
+ .rateSteps{
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-left: -35px;
+}
+.rate{
+    position: relative;
+    width: 74px;
+    height: 100px;
+    float: left;
+    z-index: 500;
+}
