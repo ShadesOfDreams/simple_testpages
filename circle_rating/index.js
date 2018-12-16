@@ -1,24 +1,31 @@
-// Back button: 
+// Back button:
 document.getElementsByClassName("back")[0]
   .addEventListener("click", function (evet) {
     window.location = "../index.html";
   });
 
 // Script:
+// Set top element indexes - only display
 var index = 0;
 [...document.querySelectorAll(".top .circle")].forEach(function (item) {
   item.style.zIndex = index++;
 });
+// Set bottom element indexes - only display
 index = 5;
 [...document.querySelectorAll(".bottom .circle")].forEach(function (item) {
   item.style.zIndex = index--;
 });
 
+// Add event to the rating blocks
 rates = document.getElementsByClassName("rate");
 [...rates].forEach(function (item) {
   item.addEventListener("click", Rate.bind(event));
 })
 
+/**
+ * @description Set rating style and value
+ * @param {} param
+ */
 function Rate(param) {
   var _event, element, id;
   if (Number.isInteger(param)) {
@@ -26,9 +33,13 @@ function Rate(param) {
   } else {
     element = param.currentTarget;
   }
+
+  //current rate is always active
   id = element.id;
   document.querySelector(".top" + id).classList.add("active");
   document.querySelector(".bottom" + id).classList.add("active");
+
+  // before them are all active too
   if (id > 1) {
     [...rates].filter(function (item) {
         return item.id < id
@@ -38,6 +49,7 @@ function Rate(param) {
         document.querySelector(".bottom" + item.id).classList.add("active");
       });
   }
+  // after them are always inactive
   if (id < 4) {
     [...rates].filter(function (item) {
         return item.id > id
@@ -47,9 +59,12 @@ function Rate(param) {
         document.querySelector(".bottom" + item.id).classList.remove("active");
       });
   }
+  // rating block gives the value to input on top
   ratinInput.value = id;
 }
+// Save rating value to:
 var ratinInput = document.getElementById("ratingValue");
 
+// to display on load:
 ratinInput.value = 2;
 Rate(2);
