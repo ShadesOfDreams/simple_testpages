@@ -12,63 +12,10 @@
 <body>
 	<!-- PAGE LINKS -->
 	<div class="page-container">
-		<div class="page" url="./offline_online/index.html">
-			<span>Offline-online page</span>
-		</div>
-		<div class="page" url="./circle_rating/index.html">
-			<span>Cricle rating solution</span>
-		</div>
-		<div class="page" url="./css_reminder/index.html">
-			<span>CSS reminders</span>
-		</div>
-		<div class="page" url="./custom_dom/index.html">
-			<span>Custom DOMs</span>
-		</div>
-		<div class="page disabled" url="./">
-			<span>JS reminders</span>
-		</div>
-		<div class="page disabled" url="./">
-			<span>Coming soon...</span>
-		</div>
-		<div class="page disabled" url="./">
-			<span>Coming soon...</span>
-		</div>
-		<div class="page disabled" url="./">
-			<span>Coming soon...</span>
-		</div>
-		<div class="page disabled" url="./">
-			<span>Coming soon...</span>
-		</div>
-		<div class="page disabled" url="./">
-			<span>Coming soon...</span>
-		</div>
 	</div>
 
 	<!-- SCRIPT -->
-	<script>
-		var pages = document.getElementsByClassName("page");
-		var hue = 0;
-		var stauration = 0;
-		var light = 0;
-		var step = 360 / [...pages].length;
-
-		function ChangeColor() {
-			hue = hue + step;
-		}
-
-		Array.from(pages).forEach(function (page, index) {
-			if (index !== 0) {
-				ChangeColor();
-			}
-			page.style.backgroundColor = "hsl(" + hue + ", 60%, 80%)";
-			page.style.borderColor = "hsl(" + hue + ", 20%, 60%)"
-			if(!page.classList.contains("disabled")){
-				page.addEventListener("click", function (event) {
-					window.location = event.currentTarget.getAttribute("url");
-				});
-			}
-		})
-	</script>
+	<script src="index.js"></script>
 </body>
 
 </html>
