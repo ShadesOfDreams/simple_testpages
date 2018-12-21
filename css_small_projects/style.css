@@ -5,6 +5,7 @@
 .example,
 .desciption{
     display: inline-block;
+    min-width: 50%;
 }
 .example{
 }

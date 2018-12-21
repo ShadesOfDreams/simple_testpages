@@ -3,14 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible"
-          content="ie=edge">
-    <link rel="stylesheet"
-          href="../style.css">
-    <link rel="stylesheet"
-          href="./css/radialMenu.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/radialMenu.css">
     <title>CSS small projects</title>
 </head>
 
@@ -23,24 +20,55 @@
     <!-- Projects -->
     <div class="project">
         <div class="example">
-            <div id="radial-menu"
-                 class="menu-container">
-                 <div class="sub-menu-container">
-                     <ul>
-                    </ul>
-                </div>
-                <div class="main-menu">
-                    <span>Main menu</span>
-                </div>
-
-            </div>
+            <div class="radial-menu-container"></div>
         </div>
-        <div class="description"></div>
+        <div class="description">
+            <p>
+                <b>Radial menu</b>
+                <ul>
+                    <li>init with RadialMenu(parameter)</li>
+                    <li>parameter:
+                        <ul>
+                            <li>array
+                                <ul>
+                                    <li>array = sub menu's list</li>
+                                    <li>array element has to be an object</li>
+                                    <li>array element parameters: title, class(optional)</li>
+                                    <li>default names will be used:
+                                        <ul>
+                                            <li>menu id = "radial-menu"</li>
+                                            <li>main menu class = "main-menu"</li>
+                                            <li>submenu container class = ".sub-menu-container"</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>object
+                                <ul>
+                                    <li>bject is the options</li>
+                                    <li>object.list = submenu's list</li>
+                                    <li>object.menu = menu DOM element / selector </li>
+                                    <li>object.main = main menu DOM element / selector</li>
+                                    <li>object.subList = submnu container DOM element / selector</li>
+                                    <li>object.subItemClassName = submnu's DOM elements / selector</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </div>
+    </div>
+
+    <div class="project">
+        <div class="example">
+            <div class="radial-menu-container-2"></div>
+        </div>
     </div>
 
     <script src="../common.js"></script>
-    <script src="index.js"></script>
     <script src="./js/radialMenu.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>

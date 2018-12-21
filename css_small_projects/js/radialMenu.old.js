@@ -2,10 +2,10 @@
  * @description creates a radial menu, dependencies: isElement & CreateElement function is common.js
  * @param {*} param option with the array
  */
-HTMLElement.prototype.radialMenu = function (options) {
+function RadialMenu(param) {
 	// basic checking is parameters are OK
-	if (!options.list) {
-		console.log("required paramteres not set");
+	if (param.list && param.container && isElement(param.container)) {
+		console.log("element not found, menu cannot be initialized");
 		return null;
 	}
 
@@ -22,20 +22,27 @@ HTMLElement.prototype.radialMenu = function (options) {
 	};
 
 	// set menu's object with the parameters
-	if (typeof options === "object") {
-		radialMenu = Object.assign({}, radialMenu, options);
-		if (typeof options.menu === "string") {
-			radialMenu.menu = document.querySelector(options.menu);
+	if (typeof param === "object") {
+		radialMenu = Object.assign({}, radialMenu, param);
+		if (typeof param.menu === "string") {
+			radialMenu.menu = document.querySelector(param.menu);
 		}
-		if (typeof options.subList === "string") {
-			radialMenu.subList = document.querySelector(options.subList);
+		if (typeof param.subList === "string") {
+			radialMenu.subList = document.querySelector(param.subList);
 		}
-		if (typeof options.main === "string") {
-			radialMenu.main = document.querySelector(options.main);
+		if (typeof param.main === "string") {
+			radialMenu.main = document.querySelector(param.main);
 		}
-	} else if (typeof options === "array") {
-		radialMenu.list = options
+	} else if (typeof param === "array") {
+		radialMenu.list = param
 	}
+
+	// set the container element
+	radialMenu.container = container ?
+		(typeof container === "string" ?
+			document.querySelector(container) : container) :
+		(typeof param.container === "string" ?
+			document.querySelector(param.container) : param.container);
 
 	// create menu base HTML structure
 	try {
@@ -43,7 +50,7 @@ HTMLElement.prototype.radialMenu = function (options) {
 			tagName: "div",
 			id: radialMenu.menu,
 			className: "menu-container",
-		}, this);
+		}, radialMenu.container);
 
 		radialMenu.subList = CreateElement({
 			tagName: "div",
