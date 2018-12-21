@@ -1,0 +1,13 @@
+.project{
+    display: block;
+    margin: 2em;
+}
+.example,
+.desciption{
+    display: inline-block;
+}
+.example{
+}
+.desciption{
+
+}

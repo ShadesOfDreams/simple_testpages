@@ -19,6 +19,16 @@ var list = [{
     "class": ["page"]
   },
   {
+    "title": "CSS small projects",
+    "url": "./css_small_projects/index.html",
+    "class": ["page"]
+  },
+
+];
+
+var comingSoonList = [
+
+  {
     "title": "JS reminders",
     "url": "./",
     "class": ["page", "disabled"]
@@ -43,17 +53,11 @@ var list = [{
     "url": "./",
     "class": ["page", "disabled"]
   },
-  {
-    "title": "Coming soon",
-    "url": "./",
-    "class": ["page", "disabled"]
-  },
-
-];
+]
 
 var container = document.getElementsByClassName("page-container")[0];
 
-function AppendItemsInOrder() {
+function AppendItemsInOrder(listArr) {
 
   // for (let i = 0; i < list.length; i++) {
   //   if (i > 0) {
@@ -68,7 +72,7 @@ function AppendItemsInOrder() {
   //   }
   // }
 
-  list.forEach(function (orderedItem) {
+  listArr.forEach(function (orderedItem) {
     var page = document.createElement("div");
     orderedItem.class.forEach(function (item) {
       page.classList.add(item);
@@ -78,10 +82,11 @@ function AppendItemsInOrder() {
     text.innerHTML = orderedItem["title"];
     page.appendChild(text);
     container.appendChild(page);
-  })
+  });
 }
 
-AppendItemsInOrder();
+AppendItemsInOrder(list);
+AppendItemsInOrder(comingSoonList);
 
 // let's color them ...
 
