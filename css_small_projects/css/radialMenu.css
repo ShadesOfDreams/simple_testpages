@@ -1,7 +1,7 @@
 .menu-container {
 	position: relative;
-	height: 500px;
-	width: 500px;
+	height: 350px;
+	width: 350px;
 }
 
 .menu-container .main-menu,
@@ -34,11 +34,6 @@
 	user-select: none;
 
 }
-
-.menu-container .sub-menu-item{
-	transform: translate(-40px, -40px);
-}
-
 
 .menu-container .sub-menu-item:hover{
 	box-shadow: 0 0 0.5em blue;
