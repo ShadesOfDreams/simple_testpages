@@ -16,7 +16,7 @@ function isElement(o) {
 }
 
 /**
- * @description Create element
+ * @description Create element and appends it to parent
  * @param {Object} elemOptions 
  * @param {HTMLElement} parent 
  */
@@ -31,20 +31,34 @@ function CreateElement(elemOptions, parent) {
   if (elemOptions.innerText) {
     htmlElement.innerText = elemOptions.innerText;
   }
-  parent.appendChild(htmlElement);
+  if (parent) {
+    parent.appendChild(htmlElement);
+  } else {
+    console.log("parent is undefined, elemOptions: ");
+    console.log(elemOptions);
+
+
+  }
   return htmlElement;
 }
 
 /**
- * 
+ * @description Creates list tree
  * @param {Object} obj 
  * @param {HTMLElement} parent 
  */
 function createInfoList(obj, parent) {
+  // base LI element
   var item = CreateElement({
     tagName: "li",
-    innerText: obj.title
   }, parent);
+  // text of LI element
+  CreateElement({
+    tagName: "span",
+    className: "title",
+    innerText: obj.title
+  }, item);
+  // (optional attribute) if element represents JS type
   if (obj.type) {
     CreateElement({
       tagName: "span",
@@ -52,6 +66,7 @@ function createInfoList(obj, parent) {
       innerText: obj.type
     }, item);
   }
+  // (optional attribute) if element contains description
   if (obj.description) {
     CreateElement({
       tagName: "span",
@@ -60,6 +75,7 @@ function createInfoList(obj, parent) {
     }, item);
 
   }
+  // if element has a sublist
   if (obj.list) {
     var list = document.createElement("ul");
     obj.list.forEach(function (element) {
@@ -77,7 +93,8 @@ function printInfo(obj) {
   var paragraph = document.createElement("p");
   CreateElement({
     innerText: obj.title,
-    tagName: "b"
+    tagName: "h3",
+    className: "title"
   }, paragraph);
   obj.list.forEach(function (element) {
     createInfoList(element, paragraph);
@@ -86,7 +103,7 @@ function printInfo(obj) {
 }
 
 /**
- * 
+ * @description Simple array generator for examples
  * @param {*} value Value to push
  * @param {*} type Type of array element 
  * @param {Number} length  Array length

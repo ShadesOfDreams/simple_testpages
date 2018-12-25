@@ -1,4 +1,4 @@
-.radial-menu-container-2 .menu-container {
+.radial-menu-container-2 .radial-menu-container {
   height: 550px;
   width: 800px;
 }
@@ -12,11 +12,10 @@
   background-color: black;
 }
 
-.radial-menu-container-2 .sub-menu-container,
-.radial-menu-container-2 .sub-menu-container.opened{
+.radial-menu-container-2 .sub-menu-container .sub-menu-container-background{
   background-color: transparent;
   box-shadow: none;
 }
-.radial-menu-container-2 .sub-menu-container.opened{
+.radial-menu-container-2 .sub-menu-container.opened .sub-menu-container-background{
   background-color: rgb(32, 43, 38);
 }
