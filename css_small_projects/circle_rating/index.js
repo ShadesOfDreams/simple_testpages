@@ -76,3 +76,28 @@ var ratinInput = document.getElementById("ratingValue");
 // to display on load:
 ratinInput.innerHTML = 2;
 Rate(2);
+
+
+// DESCRIPTION PART
+var ratingInfo = {
+  title: "Rating of interlaced circles",
+  list: [{
+    title: "5 rating: ",
+    description: "4 steps of rate, full black is not rated"
+  }, {
+    title: "Set rate: ",
+    description: "Rate can be set by clicking above/on cirlce"
+  }, {
+    title: "Unset rate: ",
+    description: "Click on current rate will unset it"
+  }, {
+    title: "Manual setting: ",
+    description: "call Rate([value])"
+  }, {
+    title: "No images used"
+  }]
+}
+
+document.getElementsByClassName("description")[0].appendChild(
+  printInfo(ratingInfo)
+);

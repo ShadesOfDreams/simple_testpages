@@ -4,11 +4,6 @@ var list = [{
     "class": ["page"]
   },
   {
-    "title": "Cricle rating solution",
-    "url": "./circle_rating/index.html",
-    "class": ["page"]
-  },
-  {
     "title": "CSS reminders",
     "url": "./css_reminder/index.html",
     "class": ["page"]
