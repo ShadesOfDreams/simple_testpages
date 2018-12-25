@@ -1,21 +1,41 @@
-.radial-menu-container-2 .radial-menu-container {
+/* Custom radial menu styles */
+.example{
+  position: relative;
+  height: 80px;
+  background-color: black;
+  width: 100%;
+}
+.menu-1,
+.menu-2 {
+  position: absolute;
+}
+
+.menu-1{
+  transform: translate(calc(-50% + 180px), calc(-50% + 40px));
+}
+
+.menu-2{
+  transform: translate(0, -155px)
+}
+
+.menu-2 .radial-menu-container {
   height: 550px;
   width: 800px;
 }
 
-.radial-menu-container-2 .main-menu,
-.radial-menu-container-2 .sub-menu-item {
+.menu-2 .main-menu,
+.menu-2 .sub-menu-item {
   width: 80px;
   height: 60px;
   border-radius: 50%;
   color: aquamarine;
-  background-color: black;
+  background-color: rgb(49, 59, 53);
 }
 
-.radial-menu-container-2 .sub-menu-container .sub-menu-container-background{
+.menu-2 .sub-menu-container .sub-menu-container-background{
   background-color: transparent;
   box-shadow: none;
 }
-.radial-menu-container-2 .sub-menu-container.opened .sub-menu-container-background{
-  background-color: rgb(32, 43, 38);
+.menu-2 .sub-menu-container.opened .sub-menu-container-background{
+  background-color: rgba(47, 53, 50, 0.5);
 }

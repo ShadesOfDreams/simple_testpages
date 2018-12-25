@@ -120,11 +120,11 @@ Array.from(document.getElementsByClassName("description")).forEach(function (ele
   }
 });
 
-document.querySelector(".radial-menu-container").radialMenu({
+document.querySelector(".menu-1").radialMenu({
   list: ArrayGenerator("Subelement", "string", 8),
 });
 
-document.querySelector(".radial-menu-container-2").radialMenu({
+document.querySelector(".menu-2").radialMenu({
   list: ArrayGenerator("Custom text", "object", 20),
   mainText: "Main",
   levels: 2,
