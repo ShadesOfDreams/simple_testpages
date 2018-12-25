@@ -14,7 +14,6 @@ HTMLElement.prototype.radialMenu = function (options) {
 	// initialize the menu's object
 	var radialMenu = {
 		list: [],
-		container: null,
 		menu: "radial-menu",
 		mainText: "Main menu",
 		main: "main-menu",
@@ -22,7 +21,9 @@ HTMLElement.prototype.radialMenu = function (options) {
 		subItemClassName: "sub-menu-item",
 		subItems: [], // upload later...
 		subMenuWidth: 80,
+		subMenuWidthUnit: "px",
 		subMenuContainerPadding: 50,
+		subMenuContainerPaddingUnit: "px",
 		levels: 1,
 		currentLevel: 1
 	};
@@ -32,6 +33,16 @@ HTMLElement.prototype.radialMenu = function (options) {
 		radialMenu = Object.assign({}, radialMenu, options);
 	} else if (typeof options === "array") {
 		radialMenu.list = options;
+	}
+
+	// levels must be 1 or greater number
+	if (!radialMenu.levels || isNaN(radialMenu.levels) || radialMenu.levels < 1) {
+		radialMenu.levels = 1;
+	}
+
+	// currentLevel must be 1 or greater number
+	if (!radialMenu.currentLevel || isNaN(radialMenu.currentLevel) || radialMenu.currentLevel < 1) {
+		radialMenu.currentLevel = 1;
 	}
 
 	// create menu base HTML structure
@@ -70,6 +81,11 @@ HTMLElement.prototype.radialMenu = function (options) {
 
 	// Submenu list upload
 	radialMenu.list.forEach(function (elem) {
+		if (typeof elem === "string") {
+			elem = {
+				title: elem
+			}
+		}
 		let listItem = CreateElement({
 				tagName: "div",
 				className: radialMenu.subItemClassName + (elem.class ? " " + elem.class : "")
@@ -136,8 +152,8 @@ HTMLElement.prototype.radialMenu = function (options) {
 			radialMenu.subList.offsetHeight / 2 / radialMenu.currentLevel -
 			(radialMenu.currentLevel === 1 ? radialMenu.subMenuContainerPadding : 0);
 		return radius =
-			a *
-			b /
+			a * 0
+		b /
 			Math.sqrt(
 				Math.pow(a, 2) * Math.pow(Math.sin(this.radian()), 2) +
 				Math.pow(b, 2) * Math.pow(Math.cos(this.radian()), 2)
