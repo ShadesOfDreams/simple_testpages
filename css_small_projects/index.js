@@ -1,5 +1,4 @@
-var radialList = [
-	{
+var radialList = [{
 		title: "SubElement 1"
 	},
 	{
@@ -28,15 +27,17 @@ var radialList = [
 function ArrayGenerator(text, length) {
 	let arr = [];
 	for (var l = 0; l < length; l++) {
-		arr.push({ title: text + " " + l });
+		arr.push({
+			title: text + " " + l
+		});
 	}
 	return arr;
 }
 
-// document.querySelector(".radial-menu-container").radialMenu({
-// 	list: radialList,
-// 	mainText: "My main"
-// });
+document.querySelector(".radial-menu-container").radialMenu({
+	list: radialList,
+	mainText: "My main"
+});
 
 document.querySelector(".radial-menu-container-2").radialMenu({
 	list: ArrayGenerator("Custom text", 20),

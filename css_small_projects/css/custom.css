@@ -1,6 +1,6 @@
 .radial-menu-container-2 .menu-container {
   height: 550px;
-  width: 1200px;
+  width: 800px;
 }
 
 .radial-menu-container-2 .main-menu,
@@ -8,10 +8,15 @@
   width: 80px;
   height: 60px;
   border-radius: 50%;
+  background-color: aquamarine;
+  color: black;
 }
 
 .radial-menu-container-2 .sub-menu-container,
 .radial-menu-container-2 .sub-menu-container.opened{
   background-color: transparent;
   box-shadow: none;
+}
+.radial-menu-container-2 .sub-menu-container.opened{
+  background-color: cadetblue;
 }

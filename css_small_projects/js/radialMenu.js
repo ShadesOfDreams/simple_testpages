@@ -2,7 +2,7 @@
  * @description creates a radial menu, dependencies: isElement & CreateElement function is common.js
  * @param {*} param option with the array
  */
-HTMLElement.prototype.radialMenu = function(options) {
+HTMLElement.prototype.radialMenu = function (options) {
 	// TODO: ellipsis -> unequal space between elements
 
 	// basic checking is parameters are OK
@@ -36,8 +36,7 @@ HTMLElement.prototype.radialMenu = function(options) {
 
 	// create menu base HTML structure
 	try {
-		radialMenu.menu = CreateElement(
-			{
+		radialMenu.menu = CreateElement({
 				tagName: "div",
 				id: radialMenu.menu,
 				className: "menu-container"
@@ -45,24 +44,21 @@ HTMLElement.prototype.radialMenu = function(options) {
 			this
 		);
 
-		radialMenu.subList = CreateElement(
-			{
+		radialMenu.subList = CreateElement({
 				tagName: "div",
 				className: radialMenu.subList
 			},
 			radialMenu.menu
 		);
 
-		radialMenu.main = CreateElement(
-			{
+		radialMenu.main = CreateElement({
 				tagName: "div",
 				className: radialMenu.main
 			},
 			radialMenu.menu
 		);
 
-		CreateElement(
-			{
+		CreateElement({
 				tagName: "span",
 				innerText: radialMenu.mainText
 			},
@@ -73,17 +69,14 @@ HTMLElement.prototype.radialMenu = function(options) {
 	}
 
 	// Submenu list upload
-	radialMenu.list.forEach(function(elem) {
-		let listItem = CreateElement(
-			{
+	radialMenu.list.forEach(function (elem) {
+		let listItem = CreateElement({
 				tagName: "div",
-				className:
-					radialMenu.subItemClassName + (elem.class ? " " + elem.class : "")
+				className: radialMenu.subItemClassName + (elem.class ? " " + elem.class : "")
 			},
 			radialMenu.subList
 		);
-		let text = CreateElement(
-			{
+		let text = CreateElement({
 				tagName: "span",
 				innerText: elem.title
 			},
@@ -101,20 +94,27 @@ HTMLElement.prototype.radialMenu = function(options) {
 	function CalculateSubMenuPosition(position, subMenu) {
 		// /x = r * cos(angle.rad) + center.hor
 		// /y = r * sin(angle.rad) + center.k..
-		var radian = position.degree * (Math.PI / 180);
 		subMenu.style.top =
-			position.radiusLenght() * Math.cos(radian) +
+			position.radiusLenght() * Math.cos(position.radian()) +
 			position.origoPosition.y +
 			radialMenu.subMenuWidth / 2 * -1 +
 			"px";
 
 		subMenu.style.left =
-			position.radiusLenght() * Math.sin(radian) +
+			position.radiusLenght() * Math.sin(position.radian()) +
 			position.origoPosition.x +
 			radialMenu.subMenuWidth / 2 * -1 +
 			"px";
 
 		position.degree = position.degree - position.stepInDegree;
+
+		// set level
+		radialMenu.currentLevel =
+			radialMenu.levels > 1 ?
+			radialMenu.currentLevel < radialMenu.levels ?
+			++radialMenu.currentLevel :
+			1 :
+			1;
 	}
 
 	/**
@@ -131,24 +131,17 @@ HTMLElement.prototype.radialMenu = function(options) {
 	function GetRadius() {
 		var b =
 			radialMenu.subList.offsetWidth / 2 / radialMenu.currentLevel -
-			radialMenu.subMenuContainerPadding;
+			(radialMenu.currentLevel === 1 ? radialMenu.subMenuContainerPadding : 0);
 		var a =
 			radialMenu.subList.offsetHeight / 2 / radialMenu.currentLevel -
-			radialMenu.subMenuContainerPadding;
-		var radius =
+			(radialMenu.currentLevel === 1 ? radialMenu.subMenuContainerPadding : 0);
+		return radius =
 			a *
 			b /
 			Math.sqrt(
 				Math.pow(a, 2) * Math.pow(Math.sin(this.radian()), 2) +
-					Math.pow(b, 2) * Math.pow(Math.cos(this.radian()), 2)
+				Math.pow(b, 2) * Math.pow(Math.cos(this.radian()), 2)
 			);
-		radialMenu.currentLevel =
-			radialMenu.levels > 1
-				? radialMenu.currentLevel < radialMenu.levels
-					? ++radialMenu.currentLevel
-					: 1
-				: 1;
-		return radius;
 	}
 
 	/**
@@ -164,16 +157,16 @@ HTMLElement.prototype.radialMenu = function(options) {
 			// Set subitems position
 			var position = {
 				degree: 180,
-				radian: function() {
+				radian: function () {
 					return this.degree * (Math.PI / 180);
 				},
 				stepInDegree: 360 / radialMenu.subItems.length,
 				// in case of unequal width and height length
-				radiusLenght:
-					radialMenu.menu.offsetHeight === radialMenu.menu.offsetWidth
-						? radialMenu.menu.offsetHeight / 2 -
-							radialMenu.subMenuContainerPadding
-						: GetRadius,
+				radiusLenght: radialMenu.menu.offsetHeight === radialMenu.menu.offsetWidth ?
+					function () {
+						return radialMenu.menu.offsetHeight / 2 -
+							radialMenu.subMenuContainerPadding;
+					} : GetRadius,
 				origoPosition: {
 					x: radialMenu.subList.offsetWidth / 2,
 					y: radialMenu.subList.offsetHeight / 2
@@ -202,8 +195,8 @@ HTMLElement.prototype.radialMenu = function(options) {
 	// Open menu
 	radialMenu.main.addEventListener("click", ToggleRadialMenu);
 
-	radialMenu.subItems.forEach(function(submenu) {
-		submenu.addEventListener("click", function(event) {
+	radialMenu.subItems.forEach(function (submenu) {
+		submenu.addEventListener("click", function (event) {
 			radialMenu.main.classList.remove("opened");
 		});
 	});
