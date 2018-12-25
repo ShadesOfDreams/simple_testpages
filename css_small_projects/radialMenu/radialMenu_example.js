@@ -90,6 +90,16 @@ radialMenuInfo = {
             title: "currentLevel",
             type: "Number",
             description: "Can be set as the starter level of first submenu (default: 1)"
+          },
+          {
+            title: "openOnMouseenter",
+            type: "Boolean",
+            description: "Hover effect for the menu - open if mouse enters the area (default: true)"
+          },
+          {
+            title: "closeOnMouseleave",
+            type: "Boolean",
+            description: "Hover effect for the menu - close if mouse leaves the area (default: true)"
           }
         ]
       }]
@@ -117,5 +127,7 @@ document.querySelector(".radial-menu-container").radialMenu({
 document.querySelector(".radial-menu-container-2").radialMenu({
   list: ArrayGenerator("Custom text", "object", 20),
   mainText: "Main",
-  levels: 1
+  levels: 2,
+  openOnMouseenter: false,
+  closeOnMouseleave: false
 });

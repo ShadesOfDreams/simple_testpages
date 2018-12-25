@@ -2,7 +2,7 @@
  * @description creates a radial menu, dependencies: isElement & CreateElement function is common.js
  * @param {*} param option with the array
  */
-HTMLElement.prototype.radialMenu = function (options) {
+HTMLElement.prototype.radialMenu = function(options) {
 	// TODO: ellipsis -> unequal space between elements
 
 	// basic checking is parameters are OK
@@ -26,7 +26,9 @@ HTMLElement.prototype.radialMenu = function (options) {
 		// TODO unused
 		subMenuContainerPaddingUnit: "px",
 		levels: 1,
-		currentLevel: 1
+		currentLevel: 1,
+		closeOnMouseleave: true,
+		openOnMouseenter: true
 	};
 
 	// set menu's object with the parameters
@@ -52,7 +54,8 @@ HTMLElement.prototype.radialMenu = function (options) {
 
 	// create menu base HTML structure
 	try {
-		radialMenu.menu = CreateElement({
+		radialMenu.menu = CreateElement(
+			{
 				tagName: "div",
 				id: radialMenu.menu,
 				className: "radial-menu-container"
@@ -60,21 +63,24 @@ HTMLElement.prototype.radialMenu = function (options) {
 			this
 		);
 
-		radialMenu.subList = CreateElement({
+		radialMenu.subList = CreateElement(
+			{
 				tagName: "div",
 				className: radialMenu.subList
 			},
 			radialMenu.menu
 		);
 
-		radialMenu.main = CreateElement({
+		radialMenu.main = CreateElement(
+			{
 				tagName: "div",
 				className: radialMenu.main
 			},
 			radialMenu.menu
 		);
 
-		CreateElement({
+		CreateElement(
+			{
 				tagName: "span",
 				innerText: radialMenu.mainText
 			},
@@ -85,26 +91,38 @@ HTMLElement.prototype.radialMenu = function (options) {
 	}
 
 	// add sublist's background
-	CreateElement({
+	CreateElement(
+		{
 			tagName: "div",
 			className: "sub-menu-container-background"
 		},
 		radialMenu.subList
 	);
+
 	// Submenu list upload
-	radialMenu.list.forEach(function (elem) {
+	radialMenu.list.forEach(function(elem) {
 		if (typeof elem === "string") {
 			elem = {
 				title: elem
 			};
 		}
-		let listItem = CreateElement({
+		let listItem = CreateElement(
+			{
 				tagName: "div",
-				className: radialMenu.subItemClassName + (elem.class ? " " + elem.class : "")
+				className:
+					radialMenu.subItemClassName + (elem.class ? " " + elem.class : "")
 			},
 			radialMenu.subList
 		);
-		let text = CreateElement({
+		listItem.addEventListener("click", function(event) {
+			if (this.getAttribute("url")) {
+				window.location = this.getAttribute("url");
+			} else {
+				CloseRadialMenu();
+			}
+		});
+		let text = CreateElement(
+			{
 				tagName: "span",
 				innerText: elem.title
 			},
@@ -136,11 +154,11 @@ HTMLElement.prototype.radialMenu = function (options) {
 
 		// set level
 		radialMenu.currentLevel =
-			radialMenu.levels > 1 ?
-			radialMenu.currentLevel < radialMenu.levels ?
-			++radialMenu.currentLevel :
-			1 :
-			1;
+			radialMenu.levels > 1
+				? radialMenu.currentLevel < radialMenu.levels
+					? ++radialMenu.currentLevel
+					: 1
+				: 1;
 	}
 
 	/**
@@ -161,40 +179,43 @@ HTMLElement.prototype.radialMenu = function (options) {
 		var a =
 			radialMenu.subList.offsetHeight / 2 / radialMenu.currentLevel -
 			(radialMenu.currentLevel === 1 ? radialMenu.subMenuContainerPadding : 0);
-		return (radius = a * 0);
-		b /
+		return (
+			a *
+			b /
 			Math.sqrt(
 				Math.pow(a, 2) * Math.pow(Math.sin(this.radian()), 2) +
-				Math.pow(b, 2) * Math.pow(Math.cos(this.radian()), 2)
-			);
+					Math.pow(b, 2) * Math.pow(Math.cos(this.radian()), 2)
+			)
+		);
 	}
 
 	/**
 	 * @description Open / close radial menu
-	 * @param {Event} event 
+	 * @param {Boolean} openMenu Toggle menu manually - open or close?
 	 */
-	function ToggleRadialMenu(event) {
+	function ToggleRadialMenu(openMenu) {
 		// just in case - only if open
-		if (!radialMenu.main.classList.contains("opened")) {
+		if (!radialMenu.main.classList.contains("opened") || openMenu === true) {
 			radialMenu.main.classList.add("opened");
 			// open submenu list
 			radialMenu.subList.classList.add("opened");
 			// Set subitems position
 			var position = {
 				degree: 180,
-				radian: function () {
+				radian: function() {
 					return this.degree * (Math.PI / 180);
 				},
 				stepInDegree: 360 / radialMenu.subItems.length,
 				// in case of unequal width and height length
-				radiusLenght: radialMenu.menu.offsetHeight === radialMenu.menu.offsetWidth ?
-					function () {
-						return (
-							radialMenu.menu.offsetHeight / 2 -
-							radialMenu.subMenuContainerPadding
-						);
-					} :
-					GetRadius,
+				radiusLenght:
+					radialMenu.menu.offsetHeight === radialMenu.menu.offsetWidth
+						? function() {
+								return (
+									radialMenu.menu.offsetHeight / 2 -
+									radialMenu.subMenuContainerPadding
+								);
+							}
+						: GetRadius,
 				origoPosition: {
 					x: radialMenu.subList.offsetWidth / 2,
 					y: radialMenu.subList.offsetHeight / 2
@@ -203,6 +224,11 @@ HTMLElement.prototype.radialMenu = function (options) {
 			radialMenu.subItems.forEach(
 				CalculateSubMenuPosition.bind(null, position)
 			);
+
+			// cose if mouse leaves menu - hover effect
+			if (radialMenu.closeOnMouseleave) {
+				radialMenu.menu.addEventListener("mouseleave", CloseRadialMenu);
+			}
 		} else {
 			radialMenu.main.classList.remove("opened");
 			radialMenu.subList.classList.remove("opened");
@@ -215,17 +241,21 @@ HTMLElement.prototype.radialMenu = function (options) {
 	 * @param {Event} event 
 	 */
 	function CloseRadialMenu(event) {
-		event.target.classList.remove("opened");
-		// unsibscribe from event until opened again
-		radialMenu.menu.removeEventListener("mouseleave", this);
+		ToggleRadialMenu(false);
+		if (radialMenu.closeOnMouseleave) {
+			// unsibscribe from event until opened again
+			radialMenu.menu.removeEventListener("mouseleave", CloseRadialMenu);
+		}
 	}
 
 	// Open menu
 	radialMenu.main.addEventListener("click", ToggleRadialMenu);
 
-	radialMenu.subItems.forEach(function (submenu) {
-		submenu.addEventListener("click", function (event) {
-			radialMenu.main.classList.remove("opened");
-		});
-	});
+	// add mouseenter event, if default value is not overwritten with false
+	if (radialMenu.openOnMouseenter) {
+		radialMenu.main.addEventListener(
+			"mouseenter",
+			ToggleRadialMenu.bind(null, true)
+		);
+	}
 };
