@@ -55,3 +55,29 @@ body {
 .inline{
     display: inline-block;
 }
+
+.description .type,
+.description .description{
+    color: gray;
+    margin: 0 0.5em;
+}
+
+.description .description{
+    font-size: 0.8em;
+    font-style: oblique;
+}
+.description .type{
+    color: rgb(62, 46, 207);
+    font-size: 1em;
+}
+
+.description .type::before{
+    content: "{"
+}
+.description .type::after{
+    content: "}"
+}
+
+.description ul{
+    margin-bottom: 0.5em;
+}
