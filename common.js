@@ -42,6 +42,8 @@ function CreateElement(elemOptions, parent) {
   return htmlElement;
 }
 
+
+
 /**
  * @description Creates list tree
  * @param {Object} obj 
@@ -52,29 +54,45 @@ function createInfoList(obj, parent) {
   var item = CreateElement({
     tagName: "li",
   }, parent);
-  // text of LI element
-  CreateElement({
-    tagName: "span",
-    className: "title",
-    innerText: obj.title
-  }, item);
-  // (optional attribute) if element represents JS type
-  if (obj.type) {
-    CreateElement({
-      tagName: "span",
-      className: "type",
-      innerText: obj.type
-    }, item);
+  for (const key in obj) {
+    if (key === "title") {
+      // title of LI element
+      CreateElement({
+        tagName: "span",
+        className: "title",
+        innerText: obj.title
+      }, item);
+    } else if (key === "text") {
+      // text of LI element
+      CreateElement({
+        tagName: "span",
+        className: "text",
+        innerText: obj.text
+      }, item);
+    } else if (key === "type") {
+      // JS type
+      CreateElement({
+        tagName: "span",
+        className: "type",
+        innerText: obj.type
+      }, item);
+    } else if (key === "description") {
+      //  description is smaller and italic
+      CreateElement({
+        tagName: "span",
+        className: "description",
+        innerText: obj.description
+      }, item);
+    } else if (key === "code") {
+      // JS code
+      CreateElement({
+        tagName: "span",
+        className: "code " + obj.codeType,
+        innerText: obj.code
+      }, item);
+    }
   }
-  // (optional attribute) if element contains description
-  if (obj.description) {
-    CreateElement({
-      tagName: "span",
-      className: "description",
-      innerText: obj.description
-    }, item);
 
-  }
   // if element has a sublist
   if (obj.list) {
     var list = document.createElement("ul");
