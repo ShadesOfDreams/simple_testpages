@@ -4,22 +4,24 @@ HTMLElement.prototype.collapsibleBlock = function (options) {
     title: "Collpasible",
     header: "collapsible-header",
     body: "collapsible-body",
-    innerhtml: HTMLElementsFromText($this.innerHTML)
+    innerhtml: $this.innerHTML
   }
   this.innerHTML = "";
 
+  collapsibleBlock = Object.assign(collapsibleBlock, options);
 
-  // get innerHTML to place in the body
-  collapsibleBlock.body = CreateElement({
+  // HEADER
+  collapsibleBlock.header = CreateElement({
     tagName: "div",
     className: collapsibleBlock.header
   }, this);
-  // get innerHTML to place in the body
+  collapsibleBlock.header.innerText = collapsibleBlock.title;
+
+  // BODY
   collapsibleBlock.body = CreateElement({
     tagName: "div",
     className: collapsibleBlock.body
   }, this);
-  collapsibleBlock.body.appendChild(collapsibleBlock.innerhtml);
-
+  collapsibleBlock.body.innerHTML = collapsibleBlock.innerhtml;
 
 }
