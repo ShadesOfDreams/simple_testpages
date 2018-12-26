@@ -2,3 +2,15 @@
     border: 2px dotted black;
     width: 300px;
 }
+
+#uploadSomething{
+    opacity: 0;
+    width: 0.1px;
+}
+
+.uploadBtn{
+    border-radius: 5px;
+    background-color: cadetblue;
+    color: white;
+    padding: 5px 10px;
+}

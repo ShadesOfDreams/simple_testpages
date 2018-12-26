@@ -16,28 +16,30 @@
         <div class="back">Back to main</div>
     </div>
 
-    <div class="page">
-        <span>
-            How to center this?
-        </span>
+    <div class="project">
+        <div class="example">
+            <div class="page">
+                <span>
+                    <div>^</div>
+                    <div>&lt How to center this? &gt</div>
+                    <div style="transform: rotate(180deg);">^</div>
+                    
+                </span>
+            </div>
+        </div>
+        <div class="description centerInfo"></div>
     </div>
-    <div class="inline">
-        <div>Parent:</div>
-        <ul>
-            <li>position: realitve</li>
-            <li>given height</li>
-        </ul>
-        <div>Child (span)</div>
-        <ul>
-            <li>position:absolute</li>
-            <li>top: 50%</li>
-            <li>transform: translate(0, -50%)</li>
-            <li>text-align: center</li>
-            <li>width: 100%</li>
-        </ul>
+
+    <div class="project">
+        <div class="example">
+            <input type="file" name="uploadSomething" id="uploadSomething">
+            <label for="uploadSomething" class="uploadBtn">Upload</label>
+        </div>
+        <div class="description inputFileButtonInfo"></div>
     </div>
 
     <script src="../common.js"></script>
+    <script src="./index.js"></script>
 </body>
 
 </html>
