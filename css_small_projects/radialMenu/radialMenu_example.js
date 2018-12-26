@@ -13,14 +13,14 @@ radialMenuInfo = {
       list: [{
         title: "Parameter options:",
         list: [{
-            title: "list",
+            code: "list",
             type: "Array",
             description: "array of menu element",
             list: [{
                 title: "If each element is an",
                 type: "Object",
                 list: [{
-                    title: "object.title",
+                    code: "object.title",
                     type: "String",
                     description: "Menu's text in <span> child"
                   },
@@ -37,67 +37,67 @@ radialMenuInfo = {
             ]
           },
           {
-            title: "menu",
+            code: "menu",
             type: "String",
             description: "ID of menu (default: radial-menu)"
           },
           {
-            title: "mainText",
+            code: "mainText",
             type: "String",
             description: "Main menu's text (default: Main menu)"
           },
           {
-            title: "main",
+            code: "main",
             type: "String",
             description: "Main menu class (default: main-menu)"
           },
           {
-            title: "subList",
+            code: "subList",
             type: "String",
             description: "Submenus' container class (default: sub-menu-container)"
           },
           {
-            title: "subItemClassName",
+            code: "subItemClassName",
             type: "String",
             description: "Submenus' class (default: sub-menu-item)"
           },
           {
-            title: "subMenuWidth",
+            code: "subMenuWidth",
             type: "Number",
             description: "Submenus' width (default: 80)"
           },
           {
-            title: "subMenuWidthUnit",
+            code: "subMenuWidthUnit",
             type: "String",
             description: "Unit type of submenus' widthe (default: px)"
           },
           {
-            title: "subMenuContainerPadding",
+            code: "subMenuContainerPadding",
             type: "Number",
             description: "Padding of submenus' container (default: 50)"
           },
           {
-            title: "subMenuContainerPaddingUnit",
+            code: "subMenuContainerPaddingUnit",
             type: "String",
             description: "Unit tpye of submenus' container padding (default: px)"
           },
           {
-            title: "levels",
+            code: "levels",
             type: "Number",
             description: "Number of levels (default: 1 === none)"
           },
           {
-            title: "currentLevel",
+            code: "currentLevel",
             type: "Number",
             description: "Can be set as the starter level of first submenu (default: 1)"
           },
           {
-            title: "openOnMouseenter",
+            code: "openOnMouseenter",
             type: "Boolean",
             description: "Hover effect for the menu - open if mouse enters the area (default: true)"
           },
           {
-            title: "closeOnMouseleave",
+            code: "closeOnMouseleave",
             type: "Boolean",
             description: "Hover effect for the menu - close if mouse leaves the area (default: true)"
           }
@@ -107,8 +107,42 @@ radialMenuInfo = {
     {
       title: "Default CSS selectors",
       list: [{
-        title: ""
-      }]
+          code: ".radial-menu-container",
+          codeType: "css"
+        },
+        {
+          code: ".main-menu",
+          codeType: "css"
+        },
+        {
+          code: ".sub-menu-item",
+          codeType: "css"
+        },
+        {
+          code: ".sub-mnu-containerr",
+          codeType: "css"
+        },
+        {
+          code: ".sub-menu-container-background",
+          codeType: "css"
+        },
+        {
+          code: ".main-menu-item",
+          codeType: "css"
+        },
+        {
+          title: "DOM elements with 'opened' class",
+          list: [{
+              code: ".sub-menu-container",
+              codeType: "css"
+            },
+            {
+              code: ".main-menu",
+              codeType: "css"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
@@ -125,9 +159,9 @@ document.querySelector(".menu-1").radialMenu({
 });
 
 document.querySelector(".menu-2").radialMenu({
-  list: ArrayGenerator("Custom text", "object", 20),
+  list: ArrayGenerator("", "object", 20),
   mainText: "Main",
-  levels: 2,
+  levels: 3,
   openOnMouseenter: false,
   closeOnMouseleave: false
 });

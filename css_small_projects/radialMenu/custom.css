@@ -15,7 +15,7 @@
 }
 
 .menu-2{
-  transform: translate(0, -155px)
+  transform: translate(0, calc(-50% + 40px));
 }
 
 .menu-2 .radial-menu-container {
@@ -38,4 +38,8 @@
 }
 .menu-2 .sub-menu-container.opened .sub-menu-container-background{
   background-color: rgba(47, 53, 50, 0.5);
+}
+
+.menu-2 .sub-menu-item span{
+  font-size: 1.6em;
 }

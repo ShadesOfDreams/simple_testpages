@@ -4,6 +4,7 @@
  */
 HTMLElement.prototype.radialMenu = function (options) {
 	// TODO: ellipsis -> unequal space between elements
+	// TODO: nyitva maradt menü eset: main katt nyitott állapotban...
 
 	// basic checking is parameters are OK
 	if (!options.list) {
@@ -27,7 +28,7 @@ HTMLElement.prototype.radialMenu = function (options) {
 		// TODO unused
 		subMenuContainerPaddingUnit: "px",
 		levels: 1,
-		currentLevel: 1,
+		currentLevel: undefined,
 		closeOnMouseleave: true,
 		openOnMouseenter: true
 	};
@@ -143,14 +144,16 @@ HTMLElement.prototype.radialMenu = function (options) {
 				position.origoPosition.x +
 				radialMenu.subMenuWidthUnit
 		});
-		position.degree = position.degree - position.stepInDegree;
+		if (radialMenu.currentLevel === radialMenu.levels) {
+			position.degree = position.degree - position.stepInDegree;
+		}
 
 		// set level
 		radialMenu.currentLevel =
 			radialMenu.levels > 1 ?
-			radialMenu.currentLevel < radialMenu.levels ?
-			++radialMenu.currentLevel :
+			radialMenu.currentLevel === radialMenu.levels ?
 			1 :
+			++radialMenu.currentLevel :
 			1;
 	}
 
@@ -166,12 +169,20 @@ HTMLElement.prototype.radialMenu = function (options) {
 	 * @description Gets radius legnth of current degree
 	 */
 	function GetRadius() {
-		var b =
-			radialMenu.subList.offsetWidth / 2 / radialMenu.currentLevel -
-			(radialMenu.currentLevel === 1 ? radialMenu.subMenuContainerPadding : 0);
-		var a =
-			radialMenu.subList.offsetHeight / 2 / radialMenu.currentLevel -
-			(radialMenu.currentLevel === 1 ? radialMenu.subMenuContainerPadding : 0);
+		var b = radialMenu.subList.offsetWidth / 2;
+		var a = radialMenu.subList.offsetHeight / 2;
+		if (radialMenu.levels > 1) {
+			a =
+				a * radialMenu.currentLevel / radialMenu.levels -
+				(radialMenu.currentLevel === radialMenu.levels ?
+					radialMenu.subMenuContainerPadding :
+					radialMenu.subItems[0].offsetHeight / 2);
+			b =
+				b * radialMenu.currentLevel / radialMenu.levels -
+				(radialMenu.currentLevel === radialMenu.levels ?
+					radialMenu.subMenuContainerPadding :
+					radialMenu.subItems[0].offsetHeight / 2);
+		}
 		return (
 			a *
 			b /
@@ -193,8 +204,10 @@ HTMLElement.prototype.radialMenu = function (options) {
 			// open submenu list
 			radialMenu.subList.classList.add("opened");
 			for (let index = 0; index < radialMenu.subItems.length; index++) {
-				radialMenu.subItems[index].style.top = radialMenu.subItemsPosition[index].top;
-				radialMenu.subItems[index].style.left = radialMenu.subItemsPosition[index].left;
+				radialMenu.subItems[index].style.top =
+					radialMenu.subItemsPosition[index].top;
+				radialMenu.subItems[index].style.left =
+					radialMenu.subItemsPosition[index].left;
 			}
 			// cose if mouse leaves menu - hover effect
 			if (radialMenu.closeOnMouseleave) {
@@ -227,7 +240,8 @@ HTMLElement.prototype.radialMenu = function (options) {
 			radian: function () {
 				return this.degree * (Math.PI / 180);
 			},
-			stepInDegree: 360 / radialMenu.subItems.length,
+			stepInDegree: 360 / (radialMenu.levels > 1 ?
+				Math.ceil(radialMenu.subItems.length / radialMenu.levels) : radialMenu.subItems.length),
 			// in case of unequal width and height length
 			radiusLenght: radialMenu.menu.offsetHeight === radialMenu.menu.offsetWidth ?
 				function () {
@@ -241,9 +255,7 @@ HTMLElement.prototype.radialMenu = function (options) {
 				y: radialMenu.subList.offsetHeight / 2
 			}
 		};
-		radialMenu.subItems.forEach(
-			CalculateSubMenuPosition.bind(null, position)
-		);
+		radialMenu.subItems.forEach(CalculateSubMenuPosition.bind(null, position));
 	})();
 
 	// Open menu
