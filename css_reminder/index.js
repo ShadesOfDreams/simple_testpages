@@ -37,7 +37,7 @@ var centerElementInfo = {
   ]
 };
 
-var inputFileButtonInfo = {
+var fileInputButtonInfo = {
   title: "How to change file input button design",
   list: [{
       title: "<input>",
@@ -62,13 +62,15 @@ Array.from(document.getElementsByClassName("description"))
   .forEach(function (descrpition) {
     if (descrpition.classList.contains("centerInfo")) {
       descrpition.appendChild(printInfo(centerElementInfo))
-    } else if (descrpition.classList.contains("inputFileButtonInfo")) {
-      descrpition.appendChild(printInfo(inputFileButtonInfo));
+    } else if (descrpition.classList.contains("fileInputButtonInfo")) {
+      descrpition.appendChild(printInfo(fileInputButtonInfo));
     }
   });
 
 // PAGES
 Array.from(document.getElementsByClassName("project"))
   .forEach(function (project) {
-    project.collapsibleBlock()
+    project.collapsibleBlock({
+      title: project.getAttribute("project")
+    });
   })

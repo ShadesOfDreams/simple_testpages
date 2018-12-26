@@ -135,3 +135,9 @@ function ArrayGenerator(value, type, length) {
   }
   return arr;
 }
+
+function HTMLElementsFromText(text) {
+  var temp = document.createElement("div");
+  temp.innerHTML = text;
+  return temp.innerHTML;
+}
