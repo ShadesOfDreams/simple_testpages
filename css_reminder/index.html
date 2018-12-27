@@ -6,17 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css_small_projects/collapsibleBlock/collapsibleBlock.css">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
+    <script>
+        document.body.style.opacity = 0;
+        window.addEventListener("DOMContentLoaded", function(){
+            while (document.body.style.opacity < 1) {
+                document.body.style.opacity++;
+            }
+        });
+        document.body.removeAttribute("style");
+    </script>
     <!-- Back button -->
     <div>
         <div class="back">Back to main</div>
     </div>
 
-    <div class="project" project="center">
+    <div class="presentation" presentation="center">
         <div class="example">
             <div class="page">
                 <span>
@@ -30,7 +40,7 @@
         <div class="description centerInfo"></div>
     </div>
 
-    <div class="project" project="fileInput">
+    <div class="presentation" presentation="fileInput">
         <div class="example">
             <input type="file" name="uploadSomething" id="uploadSomething">
             <label for="uploadSomething" class="uploadBtn">Upload</label>

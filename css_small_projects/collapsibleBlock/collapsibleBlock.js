@@ -8,6 +8,16 @@ HTMLElement.prototype.collapsibleBlock = function (options) {
   }
   this.innerHTML = "";
 
+  function ToggleCollapsibleBody(event) {
+    if (collapsibleBlock.body.classList.contains("opened")) {
+      collapsibleBlock.header.classList.remove("opened");
+      collapsibleBlock.body.classList.remove("opened");
+    } else {
+      collapsibleBlock.header.classList.add("opened");
+      collapsibleBlock.body.classList.add("opened");
+    }
+  }
+
   collapsibleBlock = Object.assign(collapsibleBlock, options);
 
   // HEADER
@@ -15,7 +25,12 @@ HTMLElement.prototype.collapsibleBlock = function (options) {
     tagName: "div",
     className: collapsibleBlock.header
   }, this);
-  collapsibleBlock.header.innerText = collapsibleBlock.title;
+  CreateElement({
+    tagName: "span",
+    innerText: collapsibleBlock.title
+  }, collapsibleBlock.header);
+
+  collapsibleBlock.header.addEventListener("click", ToggleCollapsibleBody);
 
   // BODY
   collapsibleBlock.body = CreateElement({
