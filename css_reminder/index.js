@@ -61,20 +61,42 @@ var fileInputButtonInfo = {
 
 var heightTransitionInfo = {
 	title: "Height transition",
-	link: [{
-		code: ".[collapsible-body]",
-		codeType: "css",
-		link: [{
-				code: "height: 100%;",
-				codeType: "css"
-			},
-			{
-
-			}
-		]
-	}]
+	list: [{
+			code: ".[collapsible-body]",
+			codeType: "css",
+			list: [{
+					code: "height: 100%;",
+					codeType: "css"
+				},
+				{
+					code: "max.height: 0px;",
+					codeType: "css"
+				},
+				{
+					description: "optinal: ",
+					code: "opacity: 0;",
+					codeType: "css"
+				}
+			]
+		},
+		{
+			code: ".[collapsible-body].opened",
+			codeType: "css",
+			list: [{
+					code: "max.height: [enabled max height in]px;",
+					codeType: "css"
+				},
+				{
+					description: "optional: ",
+					code: "opacity: 1;",
+					codeType: "css"
+				}
+			]
+		}
+	]
 }
 
+// DESCRIPTIONS
 Array.from(document.getElementsByClassName("description")).forEach(function (
 	descrpition
 ) {
@@ -82,6 +104,8 @@ Array.from(document.getElementsByClassName("description")).forEach(function (
 		descrpition.appendChild(printInfo(centerElementInfo));
 	} else if (descrpition.classList.contains("fileInputButtonInfo")) {
 		descrpition.appendChild(printInfo(fileInputButtonInfo));
+	} else if (descrpition.classList.contains("heightTransition")) {
+		descrpition.appendChild(printInfo(heightTransitionInfo));
 	}
 });
 
@@ -106,19 +130,3 @@ function changeCollapseBlock(event) {
 		block.classList.add("opened");
 	}
 }
-
-function setHeightValueDisplay(params) {
-	document.getElementById("collapseBlockSize").innerText =
-		document.getElementById("colllapseBlock").offsetHeight;
-}
-
-var collpasbileHeightTrackingInterval = setInterval.bind(null, setHeightValueDisplay, 250);
-
-document.getElementById("colllapseBlock")
-	.addEventListener("transitionend", function (event) {
-		clearInterval(collpasbileHeightTrackingInterval);
-	});
-document.getElementById("colllapseBlock")
-	.addEventListener("transitionstart", function (params) {
-		collpasbileHeightTrackingInterval()
-	});
