@@ -26,7 +26,8 @@
         <div class="back">Back to main</div>
     </div>
 
-    <div class="presentation" presentation="center">
+    <!-- PRESENTATIONS -->
+    <div class="presentation" presentation="Center_element">
         <div class="example">
             <div class="page">
                 <span>
@@ -40,12 +41,21 @@
         <div class="description centerInfo"></div>
     </div>
 
-    <div class="presentation" presentation="fileInput">
+    <div class="presentation" presentation="File_input's_button_desgin">
         <div class="example">
             <input type="file" name="uploadSomething" id="uploadSomething">
             <label for="uploadSomething" class="uploadBtn">Upload</label>
         </div>
         <div class="description fileInputButtonInfo"></div>
+    </div>
+
+    <div class="presentation" presentation="Height_transition">
+        <div class="example">
+            <div id="colllapseBlock" class="collapsible-body opened">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur unde accusantium quod laborum exercitationem quibusdam totam. Cupiditate facilis id, ut animi veniam reiciendis deleniti nam aperiam eaque accusamus itaque minima.</div>
+            <span id="collapseBlockSize"></span>
+            <button type="button" onclick="changeCollapseBlock()">Toggle block apperance</button>
+        </div>
+        <div class="description heightTransition"></div>
     </div>
 
     <script src="../common.js"></script>

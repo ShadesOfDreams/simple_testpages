@@ -4,6 +4,11 @@ document.getElementsByClassName("back")[0]
     window.location = "../index.html";
   });
 
+String.prototype.replaceAll = function (search, replacement) {
+  var target = this;
+  return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 /**
  * @description Returns true if it is a DOM element    
  * @param {*} o 

@@ -2,9 +2,11 @@ HTMLElement.prototype.collapsibleBlock = function (options) {
   var $this = this;
   var collapsibleBlock = {
     title: "Collpasible",
+    convertTitle: false,
     header: "collapsible-header",
     body: "collapsible-body",
-    innerhtml: $this.innerHTML
+    innerhtml: $this.innerHTML,
+    openMultiple: false
   }
   this.innerHTML = "";
 
@@ -13,6 +15,12 @@ HTMLElement.prototype.collapsibleBlock = function (options) {
       collapsibleBlock.header.classList.remove("opened");
       collapsibleBlock.body.classList.remove("opened");
     } else {
+      if (!collapsibleBlock.openMultiple) {
+        Array.from(document.querySelectorAll(".collapsible-body.opened"))
+          .forEach(function (collapsibleBody) {
+            collapsibleBody.classList.remove("opened")
+          })
+      }
       collapsibleBlock.header.classList.add("opened");
       collapsibleBlock.body.classList.add("opened");
     }
@@ -27,7 +35,7 @@ HTMLElement.prototype.collapsibleBlock = function (options) {
   }, this);
   CreateElement({
     tagName: "span",
-    innerText: collapsibleBlock.title
+    innerText: collapsibleBlock.convertTitle ? collapsibleBlock.title.replaceAll('_', ' ') : collapsibleBlock.title
   }, collapsibleBlock.header);
 
   collapsibleBlock.header.addEventListener("click", ToggleCollapsibleBody);

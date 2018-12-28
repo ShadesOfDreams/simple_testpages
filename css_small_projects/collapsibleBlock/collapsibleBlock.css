@@ -4,6 +4,8 @@
   text-align: center;
   padding: 0 10px;
   background-image: linear-gradient(white, lightgrey);
+
+  cursor: pointer;
 }
 
 .collapsible-header::after {
@@ -24,14 +26,15 @@
 
 .collapsible-body {
   position: relative;
-  max-height:  0;
-  overflow: hidden;
+  height: 100%;
+  max-height:  0px;
+  overflow: auto;
   opacity: 0;
   transition: all 500ms ease;
 }
 
 .collapsible-body.opened {
-  max-height: 100%;
+  max-height: 1500px;
   opacity: 1;
   padding: 10px 0;
 }
