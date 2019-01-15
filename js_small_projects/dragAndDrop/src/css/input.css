@@ -1,0 +1,84 @@
+
+#upload-input-container {
+    margin: auto 1em;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    #upload-input-container {
+        margin-top: 242px;
+    }
+}
+
+#send-btn,
+#upload-label {
+    position: relative;
+    font-size: 1rem;
+    font-weight: 550;
+    height: 2em;
+    width: 7em;
+    cursor: pointer;
+}
+
+#send-btn,
+#result {
+    margin-left: 1em;
+}
+
+#upload-label {
+    display: inline-block;
+    /* padding: 0.5em; */
+    text-align: center;
+    line-height: 2em;
+    margin-left: 2px;
+}
+
+input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#file-counter {
+    margin-left: 1em;
+    color: #848484;
+}
+
+#send-btn {
+    transition: 0.2s;
+}
+
+.send-btn-wider {
+    width: 8.5em !important;
+}
+
+.btn-text {
+    position: absolute;
+    margin-top: -0.5em;
+    margin-left: -2rem;
+    left: 3.5em;
+}
+
+@-moz-document url-prefix() {
+    .btn-text {
+        margin-top: -0.7em;
+    }
+}
+
+#loading {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    height: 26px;
+    margin-top: -13px;
+    margin-right: 0.3em;
+    right: 0;
+}
+
+#result {
+    display: inline-block;
+    position: absolute;
+    margin-top: 0.5em;
+}

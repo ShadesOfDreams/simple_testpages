@@ -8,6 +8,12 @@ var list = [{
     "url": "./css_reminder/index.html",
     "class": ["page"]
   },
+
+  {
+    "title": "JS reminders",
+    "url": "./js_reminder/index.html",
+    "class": ["page"]
+  },
   {
     "title": "Custom DOMs",
     "url": "./custom_dom/index.html",
@@ -18,16 +24,16 @@ var list = [{
     "url": "./css_small_projects/index.html",
     "class": ["page"]
   },
+  {
+    "title": "JS small projects",
+    "url": "./js_small_projects/index.html",
+    "class": ["page"]
+  },
 
 ];
 
 var comingSoonList = [
 
-  {
-    "title": "JS reminders",
-    "url": "./",
-    "class": ["page", "disabled"]
-  },
   {
     "title": "Coming soon",
     "url": "./",

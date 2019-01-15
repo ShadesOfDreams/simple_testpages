@@ -4,6 +4,13 @@ document.getElementsByClassName("back")[0]
     window.location = "../index.html";
   });
 
+// forward button: 
+Array.from(document.getElementsByClassName("forward")).forEach(function (item) {
+  item.addEventListener("click", function (event) {
+    window.location = event.currentTarget.getAttribute("url");
+  });
+});
+
 String.prototype.replaceAll = function (search, replacement) {
   var target = this;
   return target.replace(new RegExp(search, 'g'), replacement);
