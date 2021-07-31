@@ -29,7 +29,11 @@ var list = [{
     "url": "./js_small_projects/index.html",
     "class": ["page"]
   },
-
+  {
+    "title": "Image masking",
+    "url": "./image_masking/index.html",
+    "class": ["page"]
+  }
 ];
 
 var comingSoonList = [

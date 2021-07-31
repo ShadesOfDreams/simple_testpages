@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+  <title>Image masking</title>
+</head>
+
+<body>
+  <div id="image-container">
+    <div id="background-color"></div>
+    <img
+      id="image"
+      width="800"
+    >
+  </div>
+
+  <div
+    id="color-input-container"
+    class="hidden"
+  >
+    <input
+      type="color"
+      name="color-input"
+      id="color-input"
+    >
+  </div>
+
+  <input
+    type="file"
+    name="image-file"
+    id="image-file"
+    accept="image/*"
+  >
+
+  <script src="index.js"></script>
+</body>
+
+</html>
