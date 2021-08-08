@@ -2,6 +2,16 @@
   display: none;
 }
 
+#image-container {
+  position: relative;
+}
+
 #background-color {
   position: absolute;
+  width: auto;
+  height: auto;
+}
+
+#image {
+  position: relative;
 }

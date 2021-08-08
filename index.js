@@ -1,93 +1,93 @@
 var list = [{
-    "title": "Offline-online page",
-    "url": "./offline_online/index.html",
-    "class": ["page"]
-  },
-  {
-    "title": "CSS reminders",
-    "url": "./css_reminder/index.html",
-    "class": ["page"]
-  },
+		"title": "Offline-online page",
+		"url": "./offline_online/index.html",
+		"class": ["page"]
+	},
+	{
+		"title": "CSS reminders",
+		"url": "./css_reminder/index.html",
+		"class": ["page"]
+	},
 
-  {
-    "title": "JS reminders",
-    "url": "./js_reminder/index.html",
-    "class": ["page"]
-  },
-  {
-    "title": "Custom DOMs",
-    "url": "./custom_dom/index.html",
-    "class": ["page"]
-  },
-  {
-    "title": "CSS small projects",
-    "url": "./css_small_projects/index.html",
-    "class": ["page"]
-  },
-  {
-    "title": "JS small projects",
-    "url": "./js_small_projects/index.html",
-    "class": ["page"]
-  },
-  {
-    "title": "Image masking",
-    "url": "./image_masking/index.html",
-    "class": ["page"]
-  }
+	{
+		"title": "JS reminders",
+		"url": "./js_reminder/index.html",
+		"class": ["page"]
+	},
+	{
+		"title": "Custom DOMs",
+		"url": "./custom_dom/index.html",
+		"class": ["page"]
+	},
+	{
+		"title": "CSS small projects",
+		"url": "./css_small_projects/index.html",
+		"class": ["page"]
+	},
+	{
+		"title": "JS small projects",
+		"url": "./js_small_projects/index.html",
+		"class": ["page"]
+	},
+	{
+		"title": "Image masking",
+		"url": "./image_masking/index.html",
+		"class": ["page"]
+	}
 ];
 
 var comingSoonList = [
 
-  {
-    "title": "Coming soon",
-    "url": "./",
-    "class": ["page", "disabled"]
-  },
-  {
-    "title": "Coming soon",
-    "url": "./",
-    "class": ["page", "disabled"]
-  },
-  {
-    "title": "Coming soon",
-    "url": "./",
-    "class": ["page", "disabled"]
-  },
-  {
-    "title": "Coming soon",
-    "url": "./",
-    "class": ["page", "disabled"]
-  },
+	{
+		"title": "Coming soon",
+		"url": "./",
+		"class": ["page", "disabled"]
+	},
+	{
+		"title": "Coming soon",
+		"url": "./",
+		"class": ["page", "disabled"]
+	},
+	{
+		"title": "Coming soon",
+		"url": "./",
+		"class": ["page", "disabled"]
+	},
+	{
+		"title": "Coming soon",
+		"url": "./",
+		"class": ["page", "disabled"]
+	},
 ]
 
 var container = document.getElementsByClassName("page-container")[0];
 
 function AppendItemsInOrder(listArr) {
 
-  // for (let i = 0; i < list.length; i++) {
-  //   if (i > 0) {
-  //     if (list[i].title < list[i - 1].title) {
-  //       var previousIndex = i - 1;
-  //       while (list[i].title < list[previousIndex - 1] && previousIndex != 0) {
-  //         previousIndex--;
-  //       }
-  //       var item = list.splice(i, 1)[0];
-  //       list.splice(previousIndex, 0, item);
-  //     }
-  //   }
-  // }
+	// for (let i = 0; i < list.length; i++) {
+	//   if (i > 0) {
+	//     if (list[i].title < list[i - 1].title) {
+	//       var previousIndex = i - 1;
+	//       while (list[i].title < list[previousIndex - 1] && previousIndex != 0) {
+	//         previousIndex--;
+	//       }
+	//       var item = list.splice(i, 1)[0];
+	//       list.splice(previousIndex, 0, item);
+	//     }
+	//   }
+	// }
 
-  listArr.forEach(function (orderedItem) {
-    var page = document.createElement("div");
-    orderedItem.class.forEach(function (item) {
-      page.classList.add(item);
-    })
-    page.setAttribute("url", orderedItem["url"]);
-    var text = document.createElement("span");
-    text.innerHTML = orderedItem["title"];
-    page.appendChild(text);
-    container.appendChild(page);
-  });
+	listArr.forEach(function (orderedItem) {
+		var page = document.createElement("div");
+		orderedItem.class.forEach(function (item) {
+			page.classList.add(item);
+		})
+		page.setAttribute("url", orderedItem["url"]);
+		var text = document.createElement("span");
+		text.innerHTML = orderedItem["title"];
+		page.appendChild(text);
+		container.appendChild(page);
+	});
 }
 
 AppendItemsInOrder(list);
@@ -104,18 +104,18 @@ var step = 360 / [...pages].length;
 
 
 function ChangeColor() {
-  hue = hue + step;
+	hue = hue + step;
 }
 
 Array.from(pages).forEach(function (page, index) {
-  if (index !== 0) {
-    ChangeColor();
-  }
-  page.style.backgroundColor = "hsl(" + hue + ", 60%, 80%)";
-  page.style.borderColor = "hsl(" + hue + ", 20%, 60%)"
-  if (!page.classList.contains("disabled")) {
-    page.addEventListener("click", function (event) {
-      window.location = event.currentTarget.getAttribute("url");
-    });
-  }
+	if (index !== 0) {
+		ChangeColor();
+	}
+	page.style.backgroundColor = "hsl(" + hue + ", 60%, 80%)";
+	page.style.borderColor = "hsl(" + hue + ", 20%, 60%)"
+	if (!page.classList.contains("disabled")) {
+		page.addEventListener("click", function (event) {
+			window.location = event.currentTarget.getAttribute("url");
+		});
+	}
 });
